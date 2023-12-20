@@ -438,6 +438,7 @@ impl<DB: DatabaseExt> Inspector<DB> for Cheatcodes {
                     reverted: false,
                     deployedCode: vec![],
                     storageAccesses: vec![],
+                    depth: U256::from(1),
                 };
                 // Ensure that we're not selfdestructing a context recording was initiated on
                 if let Some(last) = account_accesses.last_mut() {
@@ -545,6 +546,7 @@ impl<DB: DatabaseExt> Inspector<DB> for Cheatcodes {
                         reverted: false,
                         deployedCode: vec![],
                         storageAccesses: vec![],
+                        depth: U256::from(data.journaled_state.depth()),
                     };
                     let access = AccountAccess {
                         access: account_access,
@@ -903,6 +905,7 @@ impl<DB: DatabaseExt> Inspector<DB> for Cheatcodes {
                     reverted: false,
                     deployedCode: vec![],
                     storageAccesses: vec![], // updated on step
+                    depth: U256::from(data.journaled_state.depth()),
                 },
                 depth: data.journaled_state.depth(),
             }]);
@@ -1247,6 +1250,7 @@ impl<DB: DatabaseExt> Inspector<DB> for Cheatcodes {
                     reverted: false,
                     deployedCode: vec![],    // updated on create_end
                     storageAccesses: vec![], // updated on create_end
+                    depth: U256::from(data.journaled_state.depth()),
                 },
                 depth: data.journaled_state.depth(),
             }]);
@@ -1510,6 +1514,7 @@ fn append_storage_access(
                         value: U256::ZERO,
                         data: vec![],
                         deployedCode: vec![],
+                        depth: U256::from(1),
                     };
                     last.push(AccountAccess { access: resume_record, depth: entry.depth });
                 }
