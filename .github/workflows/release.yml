@@ -98,7 +98,7 @@ jobs:
                       svm_target_platform: macosx-aarch64
                       platform: darwin
                       arch: arm64
-                    - runner: Windows
+                    - runner:	windows-latest
                       target: x86_64-pc-windows-msvc
                       svm_target_platform: windows-amd64
                       platform: win32
